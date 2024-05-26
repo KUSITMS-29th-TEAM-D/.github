@@ -886,14 +886,37 @@ def) 자신의 성향과 강점, 수익 창출로의 연결이 가능한 전문�
 
 ## **🌐 System Architecture**
 
-<img width="1136" alt="selpiece_아키텍처" src="https://github.com/KUSITMS-29th-TEAM-D/.github/assets/113084292/2fb7e10e-ac5d-4c2b-82bf-7f8f8e93e4ef">
+<img width="1136" alt="selpiece_아키텍처" src="https://github.com/KUSITMS-29th-TEAM-D/.github/assets/113084292/a9b2447b-fd13-40fe-82a8-ce143b2bf01f">
+
+### 프론트엔드
+
+a. Organization 레퍼지토리로Vercel 배포를 진행할 경우 유료 서비스를 이용해야 하기에, Fork Repository 배포용으로 활용함
+
+b. Git Flow 전략을 사용하여 각 로컬에서 개발을 진행한 후, Organization Main Brach로 Merge 진행
+
+c. Github Actions가 동작하여 Fork 레퍼지토리로 자동 동기화 진행
+
+d. Vercel 동작하며 배포 완료
+
+e. 추가적으로, Organization 레퍼지토리와 Slack을 연동하여 PR 또는 Merge가 완료되면 알림을 받을 수 있도록 함
+
+### 백엔드
+
+a. Git Flow 전략을 사용하여 각 로컬에서 개발을 진행한 후, Github Develop Branch에 Merge 진행
+
+b. Github Actions가 동작하여 build된 jar파일을 이미지화하여 NCP Container Registry에 Push
+
+c. NCP 서버에 접속한 후 이미지를 Pull 받아 컨테이너 생성 및 실행
+
+d. Nginx의 리버스 프록시를 새롭게 생성된 컨테이너로 변경하여 새로운 버전으로 배포 완료
+
+e. 기존 컨테이너 실행 종료
 
 <br><br>
 
 ## **📜 ERD**
 
-<img width="1582" alt="셀피스_erd" src="https://github.com/KUSITMS-29th-TEAM-D/.github/assets/113084292/02526afd-0af0-4e63-9a76-25e96a9cc1d9">
-
+<img width="1404" alt="image" src="https://github.com/KUSITMS-29th-TEAM-D/.github/assets/113084292/53b297da-61b7-48e3-b825-1552c8e404d0">
 
 <br><br>
 
@@ -903,31 +926,29 @@ def) 자신의 성향과 강점, 수익 창출로의 연결이 가능한 전문�
 
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/Recoil-3578E5?style=flat-square&logo=recoil&logoColor=white"> <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=axios&logoColor=white"> <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white">
 
-**`React`** 
-- React는 가장 핵심 요소인 Virtual Dom을 이용하여 불필요한 화면 갱신을 최소화합니다. 이를 통해, 성능 향상을 시킬 수 있으며 빠른 렌더링을 지원합니다.
-- React의 생태계는 비교적 방대하며, 개발자 커뮤니티도 활발합니다. 그만큼 다양한 라이브러리, 플러그인 등이 개발되어 있어 생산성을 향상시킬 수 있습니다.
-- React는 컴포넌트 기반 아키텍처를 채택하고 있으며, UI 요소들을 컴포넌트로 분리하여 개발하고 조합하는 방식으로 구성할 수 있습니다. 따라서, 컴포넌트의 재사용성을 용이하게 하며, 코드 수정 및 유지보수에 효율적입니다.
-
+**`React`**
+- React로 UI 요소들을 컴포넌트로 분리하여 개발하여 컴포넌트의 재사용성을 용이하게 하고자 했습니다. 이를 통해, 코드 수정 및 유지보수를 효율적으로 할 수 있어 선정하게 되었습니다.
+- React의 다양한 라이브러리와 플러그인을 통해 개발 생산성을 향상시킬 수 있어 선정하게 되었습니다.
+- 무엇보다 빠르게 진행되어야 하는 밋업데이 프로젝트이기 때문에 프론트 개발 파트 모두가 능숙하고 빠르게 작업할 수 있는 React를 선정했습니다.
+  
 **`Typescript`** 
-- Typescript는 Javascript 기반의 정적 타입 문법을 추가한 언어로, 타입 추가로 인해 안정적인 개발과 높은 수준의 코드 품질을 유지할 수 있습니다.
-- 컴파일 과정에서 타입을 지정하기 때문에 컴파일 에러 예방, 손쉬운 디버깅이 가능해집니다.
-- 변수, 함수, 매개변수, 함수 반환 값 등 타입 어노테이션(type annotation)을 추가할 수 있으며, 이를 통해 개발자가 코드의 의도를 명확하게 표현할 수 있습니다. 따라서 다른 개발자들이 코드를 이해하기 쉽게 도와줄 수 있습니다.
+- 타입 추가로 인해 안정적인 개발과 높은 수준의 코드 품질을 유지하여 컴파일 에러 예방, 손쉬운 디버깅을 가능하도록 하고자 선정하게 되었습니다.
 
 **`Styled Components`**  
-- Styled Components는 CSS를 Javascript로 작성된 컴포넌트에 바로 삽입하는 기법으로, 컴포넌트 스타일링을 쉽게 구현할 수 있습니다. 뿐만 아니라, Javascript의 기능을 활용하여 동적인 스타일을 생성하거나 조건부 스타일을 적용할 수 있습니다.
-- CSS를 컴포넌트 기반으로 스타일링함으로써 컴포넌트 단위로 스타일을 정의하고 관리할 수 있습니다. 따라서, 컴포넌트 지향적인 스타일링이 가능하하며, 전역 스타일 충돌을 방지할 수 있습니다.
+- Styled Components를 통해 컴포넌트 스타일링을 쉽게 구현하고 동적인 스타일, 조건부 스타일을 적용할 수 있어 선정하게 되었습니다.
+- CSS를 컴포넌트 기반으로 스타일을 정의하고 관리하여 컴포넌트 지향적인 스타일링 구현, 전역 스타일 충돌을 방지하고자 선정하게 되었습니다.
+- 특히, 이번 프로젝트의 경우 디자인 요소가 매우 중요하게 다뤄지고 있으며, 여러 가지 variant를 포괄할 수 있는 디자인 컴포넌트 제작에 Styled Components가 용이할 것 같아 선정하게 되었습니다.
 
 **`Vite`**  
-- Vite는 개발 서버가 빠르게 번들링하고 HMR(Hot Module Replacement, 앱을 종료하지 않고 갱신된 파일만 교체하는 방식)을 지원함으로써 빠른 개발 속도를 제공합니다.
-- Vite의 사전 번들링 기능은 ESbuild를 사용하고 있어 기존 번들러 대비 10~100배 빠른 번들링 속도를 가지고 있습니다.
+- 빠른 개발 속도와 번들링을 위해 선정하게 되었습니다.
 
 **`Recoil`**  
-- Recoil은 React를 위한 상태 관리 라이브러리이기 때문에, React의 기본적인 훅(hook)과 개념을 활용하여 상태 관리를 보다 쉽고 직관적으로 할 수 있습니다. 따라서, 러닝 커브가 비교적 낮아 쉽게 사용할 수 있습니다.
-- Recoil은 비동기 처리를 기반으로 작성되어 동시성 모드를 제공합니다. 따라서, 다른 전역 상태 라이브러리처럼 비동기 처리 라이브러리에 의존할 필요가 없습니다.
+- Recoil은 React를 위한 상태 관리 라이브러리이기 때문에, React의 기본적인 훅(hook)과 개념을 활용하여 상태 관리를 보다 쉽고 직관적으로 할 수 있어 선정하게 되었습니다.
+- 특히, 프론트 개발 파트 모두 사용할 수 있는 라이브러리였기 때문에 Recoil을 선정하게 되었습니다.
 
 **`Axios`**  
-- 크로스 브라우징 최적화로 브라우저 호환성이 뛰어나며, Javascript 내장 라이브러리인 fetch와 다르게 오래된 브라우저 지원 불가에 대한 걱정이 필요하지 않습니다.
-- Promise 기반으로 만들어졌기 때문에 데이터를 다루기 편리합니다. 뿐만 아니라, 많은 기능을 제공하고 있어 요청과 응답을 보다 쉽게 다룰 수 있는 편의성을 제공합니다.
+- 크로스 브라우징 최적화로 브라우저 호환성이 뛰어나며, Javascript 내장 라이브러리인 fetch와 다르게 오래된 브라우저 지원 불가에 대한 걱정이 필요하지 않아 선정하게 되었습니다.
+- Promise 기반으로 만들어졌기 때문에 데이터를 다루기 편리합니다. 뿐만 아니라, 많은 기능을 제공하고 있어 요청과 응답을 보다 쉽게 다룰 수 있는 편의성이 있어 선정하게 되었습니다.
 
 **`Vercel`**
 - Vercel은 서버리스 아키텍쳐 기반으로, 사이트가 원활하게 작동하도록 모든 관리 작업을 처리합니다. 뿐만 아니라, CI/CD를 쉽게 설정할 수 있습니다. 따라서 개발자가 코드 개발 외적으로 관리해야 할 요소를 줄여줍니다.
@@ -940,52 +961,52 @@ def) 자신의 성향과 강점, 수익 창출로의 연결이 가능한 전문�
 <img src="https://img.shields.io/badge/JDK 17-007396?style=flat-square&logo=openjdk&logoColor=white"> <img src="https://img.shields.io/badge/Spring boot 3.2.4-6DB33F?style=flat-square&logo=springboot&logoColor=white"> <img src="https://img.shields.io/badge/Gradle-02303A?style=flat-square&logo=gradle&logoColor=white"> <img src="https://img.shields.io/badge/Spring security-6DB33F?style=flat-square&logo=springsecurity&logoColor=white"> <img src="https://img.shields.io/badge/JWT-FC494A?style=flat-square&logo=jsonwebtokens&logoColor=white"> <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white"> <img src="https://img.shields.io/badge/Hibernate-59666C?style=flat-square&logo=hibernate&logoColor=white"> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=Nginx&logoColor=white"> <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"> <img src="https://img.shields.io/badge/Github Actions-2088FF?style=flat-square&logo=Github Actions&logoColor=white">
 
 **`Spring Boot`**
-  - 설정이 간소화되고 개발 생산성이 향상되는 스프링 기반의 프레임워크로, 내장된 톰캣과 같은 서버를 사용하여 애플리케이션을 간단히 배포할 수 있습니다.
+- 두 팀원의 주 스택인 Spring Boot 프레임워크를 사용하여 백엔드 개발을 진행했습니다.
+- 설정이 간소화되어 있어 빠른 프로젝트 생성이 가능했고, 내장된 톰캣 서버로 간편한 애플리케이션 배포를 할 수 있었습니다.
 
 **`Gradle`**
-  - 의존성 관리 및 빌드 도구로, Groovy나 Kotlin 기반의 DSL을 사용하여 프로젝트를 빌드하고 관리할 수 있으며, 멀티 프로젝트 빌드 및 다양한 플러그인 지원으로 유연성이 뛰어납니다.
-
+- Gradle 을 의존성 관리 및 빌드 도구로 선택하였습니다.
+- 다양한 플러그인 지원 덕분에 유연하게 프로젝트를 구성할 수 있었고, 빠르게 의존성을 추가하고 변경할 수 있어 시간 효율적인 부분에서 이점이 있다 판단하였습니다.
+  
 **`Spring Security`**
-  - 다양한 인증 및 권한 부여 기능을 제공하여 보안을 강화하며, 사용자 관리, 인증 프로세스 설정, 접근 제어 등의 보안 요구 사항을 손쉽게 구현할 수 있습니다.
-  - OAuth2.0 프로토콜을 통해 인증 서버에 접근하는 방식으로 소셜 로그인을 구현할 수 있습니다.
+- Spring Security의 다양한 인증 및 권한 부여 기능을 활용하여 보안을 강화했고, 사용자 인증 및 접근 제어를 구현하였습니다.
+- 특히, OAuth2.0 프로토콜을 통해 백엔드 측에서 대부분의 소셜 로그인 동작 과정을 구현하며 빠르게 로그인 과정을 개발할 수 있었습니다.
+- 또한 설정 부분에서 Spring Security와 다양한 config 파일을 통해 체계적으로 관리하였습니다.
 
 **`JPA(Hibernate)`**
-- 객체와 관계형 데이터베이스 간의 매핑을 단순화하여 데이터베이스에 대한 복잡한 SQL 쿼리를 작성하지 않고도 데이터를 다룰 수 있습니다. 
-- 객체지향 프로그래밍의 장점을 그대로 유지하면서 데이터베이스와의 상호작용을 편리하게 할 수 있습니다.
+- JPA(Hibernate)는 객체와 관계형 데이터베이스 간의 매핑을 단순화하여 데이터베이스에 대한 복잡한 SQL 쿼리를 작성하지 않고도 데이터를 다룰 수 있게 도와주었습니다.
+- 프로그램 필터링과 같이 조금 더 복잡한 쿼리가 필요할 때는, JPQL을 사용하여 쿼리를 직접 정의하여 사용했습니다.
 
 **`MySQL`**
-- 오픈 소스 관계형 데이터베이스 관리 시스템(RDBMS)으로, 안정적이고 높은 성능을 제공합니다. 
-- 대용량 데이터 처리와 트랜잭션 처리에 효과적이며, 다양한 운영 환경에서 널리 사용됩니다.
+- MySQL은 안정적이고 높은 성능을 제공하는 오픈 소스 관계형 데이터베이스 관리 시스템(RDBMS)으로, 대용량 데이터 처리와 트랜잭션 처리에 효과적이라는 장점이 존재합니다.
+- 백엔드 팀원 모두 주로 사용해 온 스택이었기에, 빠르고 문제 없이 DB 구축을 진행할 수 있었습니다.
 
-**`Redis`**
-- 메모리 기반의 데이터 저장소로, 빠른 속도와 낮은 지연 시간을 제공하여 데이터의 실시간 처리와 캐싱에 적합합니다.
-- 생산성이 뛰어나고 확장성이 우수하여 대규모 시스템에서도 효율적으로 사용될 수 있습니다.
-- 소셜 로그인 과정에서 Refresh Token을 저장하는 용도로 활용할 수 있습니다.
-
-**`JWT`**
-- JSON 웹 토큰으로, 토큰 기반의 인증 방식을 사용하여 사용자 인증 및 권한 부여를 수행합니다.
-- 토큰 자체에 정보를 포함하므로 데이터베이스 조회 없이도 효율적인 인증이 가능하며, 암호화된 형태로 토큰을 전달하여 보안을 강화할 수 있습니다.
+**`Redis & JWT & Cookie`**
+- Redis는 메모리 기반의 데이터 저장소로, 소셜 로그인 과정에서 Refresh Token을 저장하는 용도로 활용하였습니다.
+- JWT토큰 기반의 인증 방식을 사용하여, Access & Register & Refresh토큰을 발행하며 사용자 인증 및 권한 부여 & 등록 절차를 수행했습니다.
+- 액세스 토큰을 재발행 하는 경우에, 쿠키와 Redis에 각각 담긴 Refresh Token을 비교하여 맞는 경우에만 재발행 하였습니다.또한 토큰 탈취 시 악용을 방지하기 위해서, 재발행 이후에 Refresh Token도 새롭게 재발행 하여 저장했습니다.
 
 **`Nginx`**
-- 로드 밸런싱과 리버스 프록시 기능을 통해 트래픽을 새로운 버전의 애플리케이션으로 원활하게 전환할 수 있습니다.
+- HTTP 서버, 로드 밸런서, 리버스 프록시등 다양한 기능을 통해 트래픽을 새로운 버전의 애플리케이션으로 원활하게 전환할 수 있습니다.
+- 또한 SSL 지원, 접근 제어 기능을 통해 보안 설정에 유리합니다.
+- 리액트와의 연동을 위한 https 인증 및 블루그린 배포에 사용되었습니다.
 
-**`Docker`**
-- CI/CD를 진행 할 때 실행 가능한 서버 애플리케이션을 도커를 통해 컨테이너화 시켜 서버 환경에서 쉽게 실행할 수 있게 합니다.
-
-**`Docker Compose`**
-- 복잡한 애플리케이션을 쉽게 정의하고 관리할 수 있으며, 개발 환경에서부터 프로덕션 배포까지 일관된 환경을 유지할 수 있습니다.
+**`Docker & Docker Compose`**
+- CI/CD를 진행 할 때 실행 가능한 서버 애플리케이션을 Docker를 통해 컨테이너화 시켜 서버 환경에서 쉽게 실행할 수 있게 합니다.
+- 따라서 개발, 테스트, 배포를 빈번하게 해야 하는 밋업데이에서 각 환경 간의 일관성을 유지하고, 자동화를 쉽게 할 수 있습니다
+- 웹 서버, 데이터베이스와 같은 여러 개의 서비스를 단일 파일(docker-compose.yml)에서 관리할 수 있어, 각 서비스의 일관된 환경을 유지할 수 있습니다.
 
 **`Github Actions`**
-- 자동화된 워크플로우를 통해 Blue/Green 환경에 대한 코드 변경을 각각 자동으로 배포할 수 있습니다.
-- Github에서 제공하는 CI/CD 프로세스로 젠킨스와 같은 별도의 파이프라인을 구축할 필요가 없다는 장점이 있습니다.
+- Github에서 제공하는 CI/CD 프로세스입니다.
+- CI/CD는 Github Actions이외에 Jenkins와 같은 도구로도 구현이 가능하지만, 서버 구축에 많은 시간을 투자할 수 없는 밋업데이 특성상 클라우드 인스턴스가 추가로 필요한 기타 툴들에 비해 강점을 가지고 있다고 판단했습니다.
+- 또한 Github과의 완벽한 통합으로 설정과 관리가 쉽습니다.
 
-**`NCP(Naver Cloud Platform)`**
-- NCP Server
-  - 확장성과 유연성을 바탕으로 다양한 인스턴스를 효율적으로 관리 및 배포할 수 있습니다.
-  - 체계적인 가이드라인을 제공해 빠르고 정확하게 서버 구축이 가능합니다.
-- Object Storage
-  - 데이터 무결성 및 복원력을 보장하고 초대용량 데이터를 저장할 수 있습니다. 
-  
+**`NCP(Naver Cloud Platform) & Object Storage`**
+- 확장성과 유연성을 바탕으로 다양한 인스턴스를 효율적으로 관리 및 배포할 수 있습니다.
+- 체계적인 가이드라인을 제공해 빠르고 정확하게 서버 구축이 가능합니다.
+- 또한 서비스에서 사용하는 Naver CLOVA Studio와 같은 Naver의 다른 서비스와의 통합이 용이합니다.
+- 데이터 무결성 및 복원력을 보장하고 초대용량 데이터를 저장할 수 있기에 활용하였습니다.
+   
 <br>
 
 ### **🗣️ Co-working-Tool**
