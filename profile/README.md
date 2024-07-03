@@ -1015,6 +1015,12 @@ e. 기존 컨테이너 실행 종료
 
 <br>
 
+## 🎥 시연 영상
+
+![셀피스_시연영상_gif](https://github.com/CSID-DGU/2024-1-SCS4031-01-owl-4/assets/113084292/9c2cf17d-a8b3-4936-9852-adf2a144fec6)
+
+<br>
+
 ## 🔖 Naming Rules
 
 ### **📘 Web/Android**
